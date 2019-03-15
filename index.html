@@ -219,6 +219,40 @@
     </section>
 
     <!-- Section: Contact -->
+    <section id="contact" class="section section-contact center scrollspy">
+      <div id="googlemap">
+        <div class="container">
+          <div class="row">
+            <div class="col s12 m6 offset-m6">
+              <div class="card-panel z-depth-5">
+                <h4>Contact Us</h4>
+                <div class="input-field">
+                  <input type="text" id="name" placeholder="Name" />
+                  <label for="name">Name</label>
+                </div>
+                <div class="input-field">
+                  <input type="email" id="email" placeholder="Email" />
+                  <label for="email">Email</label>
+                </div>
+                <div class="input-field">
+                  <input type="text" id="phone" placeholder="Phone" />
+                  <label for="phone">Phone</label>
+                </div>
+                <div class="input-field">
+                  <textarea
+                    class="materialize-textarea"
+                    id="message"
+                    placeholder="Message"
+                  ></textarea>
+                  <label for="message">Message</label>
+                </div>
+                <input type="submit" value="Submit" class="btn blue-grey" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Footer -->
     <footer class="page-footer blue-grey darken-1">
@@ -258,6 +292,12 @@
       src="https://code.jquery.com/jquery-3.2.1.min.js"
     ></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOih1TMhFi6klesko0Tp5N81mwjQxA1-8&callback=initMap"
+    ></script>
+
     <script>
       $(document).ready(function() {
         // Init SideNav
@@ -287,6 +327,33 @@
         ];
 
         Materialize.scrollFire(options);
+
+        // Google Maps
+        function initMap() {
+          // Map positions
+          const location = { lat: 42.361145, lng: -71.057083 };
+          const centerPosition = { lat: 42.377815, lng: -70.981133 };
+          // Map options
+          const mapOptions = {
+            zoom: 12,
+            streetViewControl: false,
+            scaleControl: true,
+            mapTypeId: google.maps.mapTypeId.ROADMAP,
+            center: centerPosition
+          };
+          // Create Map
+          const map = new google.maps.Map(
+            document.getElementById('googlemap'),
+            mapOptions
+          );
+          // Show Marker
+          const marker = new google.maps.Marker({
+            position: location,
+            map: map,
+            draggable: false,
+            animation: google.maps.Animation.DROP
+          });
+        }
       });
     </script>
   </body>
